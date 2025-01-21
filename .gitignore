@@ -1,2 +1,5 @@
 *.a
 *.o
+.vscode
+client
+server
