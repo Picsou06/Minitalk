@@ -6,7 +6,7 @@
 /*   By: evdalmas <evdalmas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 05:44:51 by evdalmas          #+#    #+#             */
-/*   Updated: 2025/01/21 06:32:24 by evdalmas         ###   ########.fr       */
+/*   Updated: 2025/01/21 06:35:48 by evdalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,25 @@ void	sig_handler(int signum)
         size_received++;
         if (size_received == 32)
         {
-            message = malloc(message_size + 1);
+                message = malloc(message_size + 1);
+                if (!message)
+                {
+                    ft_printf("Memory allocation failed\n");
+                    exit(1);
+                }
+                message[message_size] = '\0';
+            }
+            else if (size_received > 32)
+            {
+                char *new_message = realloc(message, message_size + 1);
+                if (!new_message)
+                {
+                    ft_printf("Memory reallocation failed\n");
+                    free(message);
+                    exit(1);
+                }
+                message = new_message;
+                message[message_size] = '\0';
             if (!message)
             {
                 ft_printf("Memory allocation failed\n");
