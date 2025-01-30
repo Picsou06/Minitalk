@@ -6,7 +6,7 @@
 /*   By: evdalmas <evdalmas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 05:44:51 by evdalmas          #+#    #+#             */
-/*   Updated: 2025/01/21 06:35:48 by evdalmas         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:57:09 by evdalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	sig_handler(int signum)
         }
         if (i == message_size * 8)
         {
-            ft_printf("Message received: %s\n", message);
+            ft_printf("%s\n", message);
             free(message);
             message = NULL;
             i = 0;

@@ -6,7 +6,7 @@
 /*   By: evdalmas <evdalmas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 05:44:48 by evdalmas          #+#    #+#             */
-/*   Updated: 2025/01/21 06:17:01 by evdalmas         ###   ########.fr       */
+/*   Updated: 2025/01/21 06:47:27 by evdalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int send_message_size(int pid, int size)
         else
             kill(pid, SIGUSR1);
         i++;
-        usleep(200);
+        usleep(100);
     }
     return 0;
 }
@@ -55,7 +55,7 @@ int send_message(int pid, char* message)
             else
                 kill(pid, SIGUSR1);
             j++;
-            usleep(200);
+            usleep(100);
         }
         i++;
     }
@@ -69,7 +69,6 @@ int main(int argc, char *argv[]) {
     }
     int pid = atoi(argv[1]);
     char *message = argv[2];
-    message = ft_strjoin(message, "\n");
     send_message_size(pid, ft_strlen(message));
     send_message(pid, message);
     return 0;
