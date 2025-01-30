@@ -6,7 +6,7 @@
 /*   By: evdalmas <evdalmas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 05:44:48 by evdalmas          #+#    #+#             */
-/*   Updated: 2025/01/21 06:47:27 by evdalmas         ###   ########.fr       */
+/*   Updated: 2025/01/30 22:38:19 by evdalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
-int send_message_size(int pid, int size)
-{
-    int i;
-    int bit;
-
-    i = 0;
-    while (i < 32)
-    {
-        bit = (size >> i) & 1;
-        if (bit == 1)
-            kill(pid, SIGUSR2);
-        else
-            kill(pid, SIGUSR1);
-        i++;
-        usleep(100);
-    }
-    return 0;
-}
 
 int send_message(int pid, char* message)
 {
@@ -55,7 +36,7 @@ int send_message(int pid, char* message)
             else
                 kill(pid, SIGUSR1);
             j++;
-            usleep(100);
+            usleep(500);
         }
         i++;
     }
@@ -69,7 +50,9 @@ int main(int argc, char *argv[]) {
     }
     int pid = atoi(argv[1]);
     char *message = argv[2];
-    send_message_size(pid, ft_strlen(message));
-    send_message(pid, message);
-    return 0;
+    char *temp;
+    temp = ft_strjoin(message, "\n");
+    send_message(pid, temp);
+    free(temp);
+	return 0;
 }

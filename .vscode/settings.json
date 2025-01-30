@@ -5,7 +5,8 @@
         "signal.h": "c",
         "unistd.h": "c",
         "libft.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "system_error": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
